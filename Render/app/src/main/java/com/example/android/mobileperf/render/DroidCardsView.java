@@ -60,7 +60,7 @@ class DroidCardsView extends View {
      * A list of DroidCards objected. We use Asynctasks to populate the contents of this list. See
      * the DroidCardWorkerTask class that extends AsyncTask.
      */
-    private ArrayList<DroidCard> mDroidCards = new ArrayList<DroidCard>();
+    private ArrayList<DroidCard> mDroidCards = new ArrayList<>();
 
     /**
      *
@@ -93,14 +93,20 @@ class DroidCardsView extends View {
         // Don't draw anything until all the Asynctasks are done and all the DroidCards are ready.
         if (mDroids.length > 0 && mDroidCards.size() == mDroids.length) {
             // Loop over all the droids, except the last one.
-            for (int i = 0; i < mDroidCards.size(); i++) {
+            for (int i = 0; i < mDroidCards.size() - 1; i++) {
                 // Each card is laid out a little to the right of the previous one.
                 mCardLeft = i * mCardSpacing;
+
+                canvas.save();
+
+                canvas.clipRect(mCardLeft, 0, mCardLeft + mCardSpacing, mDroidCards.get(i).getHeight());
                 drawDroidCard(canvas, mDroidCards.get(i), mCardLeft, 0);
+
+                canvas.restore();
             }
+            drawDroidCard(canvas, mDroidCards.get(mDroidCards.size() - 1), mCardLeft + mCardSpacing, 0);
         }
 
-        // Invalidate the whole view. Doing this calls onDraw() if the view is visible.
         invalidate();
     }
 

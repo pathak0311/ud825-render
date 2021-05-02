@@ -17,14 +17,15 @@
 package com.example.android.mobileperf.render;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Activity to show the custom view, DroidCardsView. Used to demonstrate how clipping a view's
  * drawing area is an effective way of reducing overdraws.
  */
-public class DroidCardsActivity extends ActionBarActivity {
+public class DroidCardsActivity extends AppCompatActivity {
     public static final String TAG = "droid-cards-activity";
 
     // For this sample, we simply hard code the size of the droid image. A real app might prefer
